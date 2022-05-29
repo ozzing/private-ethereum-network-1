@@ -1,0 +1,35 @@
+{
+  "config" : {
+    "chainId" : 1337,
+    "londonBlock" : 0,
+    "ibft2" : {
+      "blockperiodseconds" : 2,
+      "epochlength" : 30000,
+      "requesttimeoutseconds" : 4
+    }
+  },
+  "nonce" : "0x0",
+  "timestamp" : "0x58ee40ba",
+  "gasLimit" : "0x47b760",
+  "difficulty" : "0x1",
+  "mixHash" : "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
+  "coinbase" : "0x0000000000000000000000000000000000000000",
+  "alloc" : {
+    "52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67" : {
+      "privateKey" : "08c370cdbdf20998ed90842fb90f9e2fd9633ed29ba6d76797170d93a9eb6fce",
+      "comment" : "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
+      "balance" : "0xad78ebc5ac6200000"
+    },
+    "3BfE330e4A94F787E23D477164816b3174232Fe1" : {
+      "privateKey" : "a42e8d36b9eeddcc809980f5b396ff54a8e120c9c20f828e0fe517fbde3995df",
+      "comment" : "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
+      "balance" : "90000000000000000000000"
+    },
+    "F4CD7568795A8dc95534425A6495c495d2E78cEc" : {
+      "privateKey" : "c4e92b300b63f3f443d8a0a512fc1d2dd29a105065c92a06f14e4cfde58d06a9",
+      "comment" : "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
+      "balance" : "90000000000000000000000"
+    }
+  },
+  "extraData" : "0xf87ea00000000000000000000000000000000000000000000000000000000000000000f85494e2701b1bed0863bd0353bae9383201ad9595058c948b31713a80beb67b8781226a0bd06bb0290190e094f71b27fe9b1def4963f93e82074d86db0325914e94c058246c3e39d54bdee93ff1f95c55d976d3914a808400000000c0"
+}
