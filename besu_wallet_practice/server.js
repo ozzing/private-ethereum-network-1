@@ -366,17 +366,51 @@ app.get('/send', function(req,res){
   res.sendFile(__dirname+"/send.html");
 })
 
-app.post('send', function(req,res){
+app.post('/send', function(req,res){
   var contract_address = "0x5C0592d879f619d1a1D432FCB47c669E96572239"
-
   var contract = new web3.eth.Contract(ABI, contract_address)
-
   var set_contract = contract.methods.transfer(req.body.address, req.body.value)
-
   var set_contract_byte = set_contract.encodeABI();
 
-  web3.
+  web3.eth.getTransactionCount(address, "pending", (err,nonce)=>{
+    var Raw_Tx = {
+      nonce: web3.utils.toHex(nonce),
+      gasPrice: web3.utils.toHex(1000),
+      gasLimit: web3.utils.toHex(3000000),
+      data: set_contract_byte,
+      from: address,
+      to: contract_address
+    }
+    var Signature = new Buffer.from(priv_key, "hex");
+
+    var Make_Tx = new ethTx(Raw_Tx);
+    Make_Tx.sign(Signature);
+
+    var Serialized_Tx = Make_Tx.serialize();
+    var Raw_Tx_Hex = '0x' + Serialized_Tx.toString('hex');
+
+    web3.eth.sendSignedTransaction(Raw_Tx_Hex).on('receipt', receipt =>{
+      console.log('receipt :', receipt);})
+  })
 })
+
+app.get('/balance', function(req,res){
+  res.sendFile(__dirname+"/balance.html")
+})
+app.post('/balance', function(req,res){
+  var contract_address = "0x5C0592d879f619d1a1D432FCB47c669E96572239"
+  var contract = new web3.eth.Contract(ABI, contract_address);
+
+  contract.methods.balanceOf(req.body.address).call().then(data=>{
+    var decimal = Math.pow(10,18)
+    var new_data = data / decimal
+    
+    console.log(new_data)
+
+    res.send("balance= " +new_data)
+  })
+})
+
 
 var server = app.listen(3000, function(){
   console.log("server is working now")
