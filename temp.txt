@@ -1,0 +1,16 @@
+enode://5ba572be68bc662508b91cb6cca997e11ce836c46cf0cd4324c6abbc1c877342fcfad3b76329b5a1f619b9ef54840fc8badf52e764d7709944a17d10dd49dcc6@127.0.0.1:30303
+
+start node1
+besu --data-path=data --genesis-file=../genesis.json --rpc-http-enabled --rpc-http-api=ETH,NET,IBFT --host-allowlist="*" --rpc-http-cors-origins="all"
+
+start node2
+besu --data-path=data --genesis-file=../genesis.json --bootnodes=enode://5ba572be68bc662508b91cb6cca997e11ce836c46cf0cd4324c6abbc1c877342fcfad3b76329b5a1f619b9ef54840fc8badf52e764d7709944a17d10dd49dcc6@127.0.0.1:30303 --p2p-port=30304 --rpc-http-enabled --rpc-http-api=ETH,NET,IBFT --host-allowlist="*" --rpc-http-cors-origins="all" --rpc-http-port=8546
+
+start node3
+besu --data-path=data --genesis-file=../genesis.json --bootnodes=enode://5ba572be68bc662508b91cb6cca997e11ce836c46cf0cd4324c6abbc1c877342fcfad3b76329b5a1f619b9ef54840fc8badf52e764d7709944a17d10dd49dcc6@127.0.0.1:30303 --p2p-port=30305 --rpc-http-enabled --rpc-http-api=ETH,NET,IBFT --host-allowlist="*" --rpc-http-cors-origins="all" --rpc-http-port=8547
+
+start node4
+besu --data-path=data --genesis-file=../genesis.json --bootnodes=enode://5ba572be68bc662508b91cb6cca997e11ce836c46cf0cd4324c6abbc1c877342fcfad3b76329b5a1f619b9ef54840fc8badf52e764d7709944a17d10dd49dcc6@127.0.0.1:30303 --p2p-port=30306 --rpc-http-enabled --rpc-http-api=ETH,NET,IBFT --host-allowlist="*" --rpc-http-cors-origins="all" --rpc-http-port=8548
+
+contract address
+0xc063518C32348a28F9DA2A2f2a2765F771b2eD86
