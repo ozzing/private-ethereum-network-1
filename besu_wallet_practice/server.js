@@ -309,10 +309,14 @@ app.get('/', function(req,res){
   res.sendFile(__dirname + "/index.html")
 })
 
+app.get('/deploy', function(req,res){
+  res.sendFile(__dirname + "/deploy.html")
+})
+
 app.post('/deploy', function(req,res){
-  var name = req.body.tn;
-  var symbol = req.body.ts;
-  var min_ = req.body.supply;
+  var name_ = req.body.tn;
+  var symbol_ = req.body.ts;
+  var mint_ = req.body.supply;
 
   var erc20Contract = new web3.eth.Contract([{"inputs":[{"internalType":"string","name":"name_","type":"string"},{"internalType":"string","name":"symbol_","type":"string"},{"internalType":"uint256","name":"mint_","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}]);
   var erc20 = erc20Contract.deploy({
@@ -322,15 +326,16 @@ app.post('/deploy', function(req,res){
             symbol_,
             mint_,
       ]
-  }).send({
-      from: web3.eth.accounts[0], 
-      gas: '4700000'
-    }, function (e, contract){
-      console.log(e, contract);
-      if (typeof contract.address !== 'undefined') {
-          console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
-      }
   })
+  // .send({
+  //     from: web3.eth.accounts[0], 
+  //     gas: '4700000'
+  //   }, function (e, contract){
+  //     console.log(e, contract);
+  //     if (typeof contract.address !== 'undefined') {
+  //         console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
+  //     }
+  // })
 
   var set_string_byte_code = erc20.encodeABI();
 
@@ -352,16 +357,26 @@ app.post('/deploy', function(req,res){
     var Raw_Tx_Hex = '0x' + Serialized_Tx.toString('hex');
 
     web3.eth.sendSignedTransaction(Raw_Tx_Hex).on('receipt', receipt => {
-      console.log('receipt : ',receipt);
-    })
+      console.log('receipt : ',receipt);})
   })
 
 })
 
-app.get('/deploy', function(req,res){
-  res.sendFile(__dirname + "/deploy.html")
+app.get('/send', function(req,res){
+  res.sendFile(__dirname+"/send.html");
 })
 
+app.post('send', function(req,res){
+  var contract_address = "0x5C0592d879f619d1a1D432FCB47c669E96572239"
+
+  var contract = new web3.eth.Contract(ABI, contract_address)
+
+  var set_contract = contract.methods.transfer(req.body.address, req.body.value)
+
+  var set_contract_byte = set_contract.encodeABI();
+
+  web3.
+})
 
 var server = app.listen(3000, function(){
   console.log("server is working now")
