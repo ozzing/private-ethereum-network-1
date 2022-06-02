@@ -5,6 +5,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import { Circle } from '../shared/Components';
 import COLORS from '../../constants/Colors';
+import { Link } from 'react-router-dom';
 
 const AccountMain = () => {
   const balace = useState(4000);
@@ -25,16 +26,20 @@ const AccountMain = () => {
       </WalletOverView>
       <ButtonGroup>
         <ButtonWrapper>
-          <Circle>
-            <DownloadIcon sx={{ color: '#ffffff', fontSize: 20 }} />
-          </Circle>
-          <ButtonSpan>구매</ButtonSpan>
+          <Link to="/deploy">
+            <Circle>
+              <DownloadIcon sx={{ color: '#ffffff', fontSize: 20 }} />
+            </Circle>
+            <ButtonSpan>토큰 발행</ButtonSpan>
+          </Link>
         </ButtonWrapper>
         <ButtonWrapper>
-          <Circle>
-            <ArrowForwardIcon sx={{ color: '#ffffff', fontSize: 20 }} />
-          </Circle>
-          <ButtonSpan>보내기</ButtonSpan>
+          <Link to="/send">
+            <Circle>
+              <ArrowForwardIcon sx={{ color: '#ffffff', fontSize: 20 }} />
+            </Circle>
+            <ButtonSpan>보내기</ButtonSpan>
+          </Link>
         </ButtonWrapper>
         <ButtonWrapper>
           <Circle>
