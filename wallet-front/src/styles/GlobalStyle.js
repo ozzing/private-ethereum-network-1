@@ -9,6 +9,11 @@ html,
 body {
   margin: 0;
   padding: 0;
+  
+  /* Center Container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 a{
   text-decoration-line : none;

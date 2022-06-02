@@ -4,7 +4,7 @@ import App from './App';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Deploy from './pages/deploy/Deploy';
 import Send from './pages/send/Send';
-import MainHeader from './components/MainHeader';
+import MainHeader from './components/header/MainHeader';
 // import COLORS from './constants/Colors';
 import GlobalStyle from './styles/GlobalStyle';
 
