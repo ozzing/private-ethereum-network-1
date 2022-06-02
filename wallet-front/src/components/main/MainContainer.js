@@ -20,5 +20,11 @@ const MainWrapper = styled.div`
   box-shadow: 0 0 7px 0 rgb(0 0 0 / 8%);
   background-color: #ffffff;
   align-items: center;
+
+  @media screen and (min-width: 1281px) {
+    width: 62vw;
+    min-height: 82vh;
+    box-shadow: ;
+  }
 `;
 export default MainContainer;
