@@ -8,11 +8,7 @@ const AccountHeader = () => {
       <HeaderWrapper>
         <span></span>
         <span>Account2</span>
-        <MoreVertIcon
-          style={{
-            placeSelf: 'center end',
-          }}
-        />
+        <MoreVertIcon />
       </HeaderWrapper>
       <HorizontalLine />
     </>

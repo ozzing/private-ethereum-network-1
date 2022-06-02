@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import AccountHeader from './AccountHeader';
+import AccountMain from './AccountMain';
 
 const MainContainer = () => {
   return (
     <MainWrapper>
       <AccountHeader />
-      <AccountHeader />
+      <AccountMain />
     </MainWrapper>
   );
 };
