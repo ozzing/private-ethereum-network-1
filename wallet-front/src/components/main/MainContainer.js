@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 import AccountHeader from './AccountHeader';
 import AccountMain from './AccountMain';
+import TabContainer from './TabContainer';
 
 const MainContainer = () => {
   return (
     <MainWrapper>
       <AccountHeader />
       <AccountMain />
+      <TabContainer />
     </MainWrapper>
   );
 };
