@@ -42,6 +42,7 @@ img {
   -ms-user-select:none; 
   user-select:none
 }
+
 `;
 
 export default GlobalStyle;

@@ -1,5 +1,6 @@
 const COLORS = {
   /* Main Colors */
+  primary: '#027DD6',
   backgroundColor: '#F2F4F6',
 
   /* Text, Component Colors */

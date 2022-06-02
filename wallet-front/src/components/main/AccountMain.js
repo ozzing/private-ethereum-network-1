@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import DownloadIcon from '@mui/icons-material/Download';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
+import { Circle } from '../shared/Components';
+import COLORS from '../../constants/Colors';
 
 const AccountMain = () => {
   const balace = useState(4000);
@@ -18,15 +23,34 @@ const AccountMain = () => {
           <h2>{balace} ETH</h2>
         </div>
       </WalletOverView>
+      <ButtonGroup>
+        <ButtonWrapper>
+          <Circle>
+            <DownloadIcon sx={{ color: '#ffffff', fontSize: 20 }} />
+          </Circle>
+          <ButtonSpan>구매</ButtonSpan>
+        </ButtonWrapper>
+        <ButtonWrapper>
+          <Circle>
+            <ArrowForwardIcon sx={{ color: '#ffffff', fontSize: 20 }} />
+          </Circle>
+          <ButtonSpan>보내기</ButtonSpan>
+        </ButtonWrapper>
+        <ButtonWrapper>
+          <Circle>
+            <SwapHorizIcon sx={{ color: '#ffffff', fontSize: 20 }} />
+          </Circle>
+          <ButtonSpan>스왑</ButtonSpan>
+        </ButtonWrapper>
+      </ButtonGroup>
     </MainWrapper>
   );
 };
 
 const MainWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  flex: 1;
   min-height: 209px;
   min-width: 0;
   padding-top: 10px;
@@ -35,11 +59,31 @@ const MainWrapper = styled.div`
 `;
 
 const WalletOverView = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 68px;
+  margin-bottom: 24px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  margin-right: 12px;
+`;
+
+const ButtonSpan = styled.span`
+  font-size: 10px;
+  color: ${COLORS.primary};
 `;
 
 export default AccountMain;

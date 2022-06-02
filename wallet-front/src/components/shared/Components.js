@@ -6,3 +6,16 @@ export const HorizontalLine = styled.div`
   height: 0.5px;
   width: 100%;
 `;
+
+export const Circle = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  background: ${COLORS.primary};
+  border-radius: 18px;
+  border: none;
+  margin-top: 6px;
+  margin-bottom: 5px;
+`;
