@@ -4,6 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import AssetList from './AssetList';
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -65,7 +66,7 @@ const TabContainer = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        여기 안에 컴포넌트 넣으면 끝
+        <AssetList />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
