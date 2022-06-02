@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AssetList from './AssetList';
+import ReceiptList from './ReceiptList';
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -69,7 +70,7 @@ const TabContainer = () => {
         <AssetList />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <ReceiptList />
       </TabPanel>
     </Box>
   );
