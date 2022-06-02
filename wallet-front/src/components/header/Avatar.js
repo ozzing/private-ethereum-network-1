@@ -1,6 +1,5 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { deepOrange } from '@mui/material/colors';
 
 const LetterAvatars = () => {
   return (

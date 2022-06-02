@@ -1,20 +1,11 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import SelectButton from './SelectButton';
 import LetterAvatars from './Avatar';
 
 const MainHeader = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        height: '72px',
-        width: '80vw',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        // background: 'red',
-      }}
-    >
+    <HeaderWrapper>
       <div
         style={{
           display: 'flex',
@@ -30,8 +21,16 @@ const MainHeader = () => {
         <SelectButton />
         <LetterAvatars />
       </div>
-    </div>
+    </HeaderWrapper>
   );
 };
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  height: 72px;
+  width: 80vw;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 export default MainHeader;
