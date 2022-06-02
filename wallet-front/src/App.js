@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
+import MainContainer from './components/main/MainContainer';
 
-export default function App() {
+const App = () => {
   return (
     <>
-      <h1>리액트로 만든 페이지임</h1>
-      <nav>
+      <MainContainer />
+      {/* <nav>
         <Link to="/deploy">to deploy page</Link>
         <br />
         <Link to="send">to send page</Link>
-      </nav>
+      </nav> */}
     </>
   );
-}
+};
+export default App;
