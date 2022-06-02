@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import SelectButton from './SelectButton';
 import LetterAvatars from './Avatar';

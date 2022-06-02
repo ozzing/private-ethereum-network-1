@@ -3,7 +3,8 @@ const COLORS = {
   backgroundColor: '#F2F4F6',
 
   /* Text, Component Colors */
-  gray: '#ADB5BD' /* placeholder color*/,
+  gray0: '#ADB5BD' /* placeholder color*/,
+  gray1: '#D6D9DC',
 };
 
 export default COLORS;
