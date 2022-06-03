@@ -8,7 +8,7 @@ const MainContainer = () => {
     <MainWrapper>
       <AccountHeader />
       <AccountMain />
-      <TabContainer />
+      {/* <TabContainer /> */}
     </MainWrapper>
   );
 };

@@ -10,8 +10,8 @@ import GlobalStyle from './styles/GlobalStyle';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-    <MainHeader />
     <BrowserRouter>
+      <MainHeader />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="deploy" element={<Deploy />} />

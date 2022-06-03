@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import DownloadIcon from '@mui/icons-material/Download';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -8,7 +8,11 @@ import COLORS from '../../constants/Colors';
 import { Link } from 'react-router-dom';
 
 const AccountMain = () => {
-  const balace = useState(4000);
+  const [balace, setBalance] = useState();
+
+  useEffect(() => {
+    setBalance(4000);
+  }, []);
 
   return (
     <MainWrapper>
