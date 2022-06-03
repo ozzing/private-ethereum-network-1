@@ -6,7 +6,6 @@ const AccountHeader = () => {
   return (
     <>
       <HeaderWrapper>
-        {/* <span></span> */}
         <AccountWrapper>
           <span>Account2</span>
         </AccountWrapper>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import SelectButton from './SelectButton';
 import LetterAvatars from './Avatar';
+import { Link } from 'react-router-dom';
 
 const MainHeader = () => {
   return (
@@ -12,10 +13,12 @@ const MainHeader = () => {
           alignItems: 'center',
         }}
       >
-        <CurrencyExchangeIcon
-          style={{ marginRight: '10px', marginTop: '-2px' }}
-        />
-        <span>소공대학교</span>
+        <Link to="/">
+          <CurrencyExchangeIcon
+            style={{ marginRight: '10px', marginTop: '-2px' }}
+          />
+          <span>소공대학교</span>
+        </Link>
       </div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <SelectButton />
@@ -31,6 +34,12 @@ const HeaderWrapper = styled.div`
   width: 80vw;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (min-width: 1281px) {
+    width: 62vw;
+    /* min-height: 82vh; */
+    /* box-shadow: ; */
+  }
 `;
 
 export default MainHeader;
