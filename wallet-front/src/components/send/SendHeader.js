@@ -42,9 +42,10 @@ const HeaderWrapper = styled.div`
   column-gap: 5px;
   padding: 0 8px;
   border-bottom: 1px solid var(--color-border-muted);
-  width: 100%;
+  width: 97%;
   height: 64px;
   background-color: #f2f4f6;
+  box-shadow: 0 0 7px 0 rgb(0 0 0 / 8%);
 `;
 const Button = styled.button`
   background-color: transparent;
