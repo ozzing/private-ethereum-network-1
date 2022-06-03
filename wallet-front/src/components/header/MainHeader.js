@@ -34,6 +34,12 @@ const HeaderWrapper = styled.div`
   width: 80vw;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (min-width: 1281px) {
+    width: 62vw;
+    /* min-height: 82vh; */
+    /* box-shadow: ; */
+  }
 `;
 
 export default MainHeader;
