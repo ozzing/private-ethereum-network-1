@@ -17,7 +17,7 @@ const SendContainer = () => {
 const SendWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40vw;
+  width: 31vw;
   min-height: 82vh;
   box-shadow: 0 0 7px 0 rgb(0 0 0 / 8%);
   background-color: white;
