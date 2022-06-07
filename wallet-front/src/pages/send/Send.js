@@ -1,8 +1,23 @@
+import SendContainer from '../../components/send/SendContainer';
+import SendMain from '../../components/send/SendMain';
+import styled from '@emotion/styled';
+
 const Send = () => {
   return (
-    <main style={{ padding: "1rem 0" }}>
-      <h2>Send</h2>
-    </main>
+    <SendBase>
+      <SendContainer>
+        <h2>Send</h2>y
+        <SendMain />
+      </SendContainer>
+    </SendBase>
   );
-}
-export default Send
+};
+
+const SendBase = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: '1rem 0';
+`;
+export default Send;
