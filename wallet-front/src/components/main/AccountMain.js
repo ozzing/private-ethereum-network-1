@@ -6,6 +6,7 @@ import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import { Circle } from '../shared/Components';
 import COLORS from '../../constants/Colors';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const AccountMain = () => {
   const [balace, setBalance] = useState();
@@ -13,6 +14,19 @@ const AccountMain = () => {
   useEffect(() => {
     setBalance(4000);
   }, []);
+
+  axios
+    .get('http://localhost:3000/')
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    //성공이던 실패던 항상 실행
+    .then(() => {
+      console.log('axios runing');
+    });
 
   return (
     <MainWrapper>
