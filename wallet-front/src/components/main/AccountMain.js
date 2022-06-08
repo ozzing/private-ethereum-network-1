@@ -13,20 +13,17 @@ const AccountMain = () => {
 
   useEffect(() => {
     setBalance(4000);
+    const InitCall = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/');
+        const { data } = response;
+        console.log(data);
+      } catch (err) {
+        console.log('Error >>', err);
+      }
+    };
+    InitCall();
   }, []);
-
-  axios
-    .get('http://localhost:3000/')
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-    //성공이던 실패던 항상 실행
-    .then(() => {
-      console.log('axios runing');
-    });
 
   return (
     <MainWrapper>
