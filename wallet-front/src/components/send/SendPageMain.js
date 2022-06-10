@@ -15,24 +15,33 @@ const SendPageMain = () => {
 
   const balance = 100;
   const [price, setPrice] = useState(0);
+  const [visible, setVisible] = useState(false);
 
   const handleOnchange = (event) => {
     setPrice(event.target.value);
+    if (event.target.value > balance) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
   };
 
   const onCancelClick = (event) => {
     window.location.href = '/send';
   };
 
+  const onMaxClick = (event) => {
+    price === balance ? setPrice(0) : setPrice(balance);
+  };
+
   return (
     <Box sx={{ width: '100%' }}>
       <BoxWrapper>
         <BoxContainer>
-          <SendWrapper>
-            <ButtonWrapper></ButtonWrapper>
-          </SendWrapper>
+          <ButtonWrapper></ButtonWrapper>
+          {visible && <WarnArea>가스 자금 부족</WarnArea>}
           <SendPageContainer>
-            자산:{' '}
+            <TitleWrapper>자산: </TitleWrapper>
             <SendBox>
               <LogoCircle src={logo} />
               <BalanceWrapper>
@@ -43,12 +52,21 @@ const SendPageMain = () => {
             </SendBox>
           </SendPageContainer>
           <SendPageContainer>
-            금액:{' '}
+            <TitleWrapper>
+              금액:
+              <MaxButton onClick={onMaxClick}>최대</MaxButton>
+            </TitleWrapper>
             <SendBox>
               <PriceWrapper>
-                <Input type="number" value={price} onChange={handleOnchange} />
+                <Input
+                  type="number"
+                  min="0"
+                  max={balance}
+                  value={price}
+                  onChange={handleOnchange}
+                />
                 {value}
-                <br></br>$
+                <br></br>
                 {money === 'USD' ? price * 1778.49 : price * 0.00055993} {money}
               </PriceWrapper>
               <ChangeWraper>
@@ -67,6 +85,27 @@ const SendPageMain = () => {
     </Box>
   );
 };
+
+const WarnArea = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-items: filled;
+  height: 20px;
+  border: 1px solid red;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 20px;
+  background-color: rgb(255 0 0 / 8%);
+`;
+
+const TitleWrapper = styled.div`
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+`;
 
 const PriceWrapper = styled.div`
   width: 100%;
@@ -104,7 +143,7 @@ const BoxContainer = styled.div`
 const ButtonWraper = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 180px 30px 10px 30px;
+  padding: 230px 30px 10px 30px;
 `;
 
 const CancelButton = styled.button`
@@ -116,6 +155,7 @@ const CancelButton = styled.button`
   height: 50px;
   color: royalblue;
 `;
+
 const NextButton = styled.button`
   background-color: royalblue;
   border: 1px solid royalblue;
@@ -125,26 +165,36 @@ const NextButton = styled.button`
   height: 50px;
   color: white;
 `;
+
+const MaxButton = styled.button`
+  margin-left: 20px;
+  background-color: white;
+  border: 1px solid royalblue;
+  border-radius: 40px;
+  width: 40px;
+  height: 20px;
+  font-size: 5px;
+  color: royalblue;
+`;
+
 const SendBox = styled.div`
   border: 1px solid gold;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-items: center;
-  width: 320px;
+  width: 100%;
   height: 70px;
   border: 1px solid lightgray;
   border-radius: 4px;
   margin-bottom: 10px;
-  margin-left: 90px;
   margin-top: 10px;
 `;
 const SendPageContainer = styled.div`
   display: flex;
   flex-direction: row;
   height: 80px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 20px;
   justify-content: center;
   align-items: center;
   flex: 1;
@@ -160,6 +210,7 @@ const SendWrapper = styled.div`
   align-items: start;
   flex: 1;
   background-color: white;
+  border: 1px solid gray;
 `;
 
 const ButtonWrapper = styled.div`
