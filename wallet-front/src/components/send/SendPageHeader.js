@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { Checkbox } from '@mui/material';
 import { HorizontalLine } from '../shared/Components';
+import { useLocation } from 'react-router';
 
 const handleClick = (event, newValue) => {
   window.location.href = '/send';
 };
 
 const AccountHeader = () => {
-  const name = 'Account 1';
-  const key = '0x52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67';
+  const { state } = useLocation();
   return (
     <>
       <HeaderWrapper>
@@ -19,8 +19,8 @@ const AccountHeader = () => {
         <AccountArea>
           <Checkbox checked={true} defaultChecked color="success" />
           <AccountInfo>
-            <AccountName>{name}</AccountName>
-            <AccountKey>{key}</AccountKey>
+            <AccountName>{state.name}</AccountName>
+            <AccountKey>{state.key}</AccountKey>
           </AccountInfo>
           <Button onClick={handleClick}>✖</Button>
         </AccountArea>

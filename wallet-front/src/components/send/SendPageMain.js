@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import styled from 'styled-components';
 import logo from '../shared/logo.png';
 import { ChangeCircleOutlined } from '@mui/icons-material';
 import Input from '@mui/material/Input';
+import axios from 'axios';
 
 const SendPageMain = () => {
   const [value, setValue] = useState('eth', 'USD');
@@ -13,7 +14,22 @@ const SendPageMain = () => {
     money === 'USD' ? setMoney('eth') : setMoney('USD');
   };
 
-  const balance = 100;
+  const [balance, setBalance] = useState();
+
+  useEffect(() => {
+    setBalance(4000);
+    const InitCall = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/');
+        const { data } = response;
+        console.log(data);
+      } catch (err) {
+        console.log('Error >>', err);
+      }
+    };
+    InitCall();
+  }, []);
+
   const [price, setPrice] = useState(0);
   const [visible, setVisible] = useState(false);
 
