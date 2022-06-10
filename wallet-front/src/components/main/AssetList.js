@@ -12,6 +12,15 @@ const AssetList = () => {
   const [tokenList, setTokenList] = useState([]);
 
   useEffect(() => {
+    // 토큰 가져오기
+    const loadData = window.localStorage.getItem('receipt');
+    if (loadData !== null) {
+      const receipt = JSON.parse(loadData);
+      console.log(receipt);
+      // const job = 'deploy';
+      // const contractAddress = {receipt};
+      // const amount = receipt.logs[0].data;
+    }
     setTokenList(['token1', 'token2', 'token3']);
   }, []);
 

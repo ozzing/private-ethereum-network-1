@@ -12,6 +12,7 @@ const DeployForm = () => {
   const [tokenName, setTokenName] = useState('');
   const [tokenSymbol, setTokenSymbol] = useState('');
   const [tokenSupply, setTokenSupply] = useState('');
+  const [list, setList] = useState([]);
   const [result, setResult] = useState('');
 
   const handleTokenName = (event) => {
@@ -25,9 +26,18 @@ const DeployForm = () => {
   };
 
   useEffect(() => {
+    const loadData = window.localStorage.getItem('receipt');
+    if (loadData !== null) {
+      const receipt = JSON.parse(loadData);
+      setList(receipt);
+    }
+  }, []);
+
+  useEffect(() => {
     if (result !== '') {
       // set token in local storage
-      window.localStorage.setItem('receipt', JSON.stringify(result));
+      console.log(list);
+      window.localStorage.setItem('receipt', JSON.stringify(list));
 
       swal(
         '토큰이 발행되었습니다!',
@@ -39,7 +49,7 @@ const DeployForm = () => {
         }
       });
     }
-  }, [result, navigate]);
+  }, [result, list, navigate]);
 
   const handleSubmit = () => {
     const payload = {
@@ -56,6 +66,7 @@ const DeployForm = () => {
         );
         const { receipt } = data;
         setResult(receipt);
+        setList([...list, receipt]);
       } catch (err) {
         console.log('Error >>', err);
       }
