@@ -11,35 +11,35 @@ const ReceiptList = () => {
   const [receiptList, setReceiptList] = useState([]);
 
   useEffect(() => {
-    setReceiptList([
-      {
-        to: '0x52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67',
-        amount: '150',
-        job: 'send',
-      },
-      {
-        to: '0x52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67',
-        amount: '100',
-        job: 'receive',
-      },
-      {
-        to: '0x52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67',
-        amount: '10',
-        job: 'send',
-      },
-    ]);
+    // 토큰 가져오기
+    const loadData = window.localStorage.getItem('receipt');
+    if (loadData !== null) {
+      const receipt = JSON.parse(loadData);
+      let tempList = [];
+      receipt.forEach((element) => {
+        // console.log(element);
+        const job = 'deploy';
+        const contractAddress = element.contractAddress;
+        const amount = parseInt(element.logs[0].data, 16);
+        tempList = [
+          ...tempList,
+          { job: job, contractAddress: contractAddress, amount: amount },
+        ];
+      });
+      setReceiptList(tempList);
+    }
   }, []);
 
   return (
     <Box sx={{ width: '100%' }}>
       <nav aria-label="receipt list items">
         <List>
-          {receiptList.map(({ to, amount, job }, index) => {
+          {receiptList.map(({ contractAddress, amount, job }, index) => {
             return (
               <div key={index}>
                 <ListItem disablePadding>
                   <ListItemButton>
-                    <ListItemText primary={job} secondary={to} />
+                    <ListItemText primary={job} secondary={contractAddress} />
                     <span>{amount}</span>
                   </ListItemButton>
                 </ListItem>
