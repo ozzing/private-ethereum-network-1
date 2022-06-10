@@ -1,15 +1,24 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import styled from 'styled-components';
 import logo from '../shared/logo.png';
 import { ChangeCircleOutlined } from '@mui/icons-material';
+import Input from '@mui/material/Input';
 
 const SendPageMain = () => {
-  const [value, setValue] = React.useState();
-  const onPriceChange = (event, newValue) => {};
+  const [value, setValue] = useState('eth', 'USD');
+  const [money, setMoney] = useState('USD', 'eth');
+  const onPriceChange = (event) => {
+    value === 'eth' ? setValue('USD') : setValue('eth');
+    money === 'USD' ? setMoney('eth') : setMoney('USD');
+  };
 
   const balance = 100;
-  const price = 0;
+  const [price, setPrice] = useState(0);
+
+  const handleOnchange = (event) => {
+    setPrice(event.target.value);
+  };
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -33,12 +42,16 @@ const SendPageMain = () => {
             금액:{' '}
             <SendBox>
               <PriceWrapper>
-                <b>{price} eth</b>
-                <br></br>${price}.00 USD
+                <Input type="number" value={price} onChange={handleOnchange} />
+                {value}
+                <br></br>$
+                {money === 'USD' ? price * 1778.49 : price * 0.00055993} {money}
               </PriceWrapper>
-              <ChangeCircleOutlined
-                onClick={onPriceChange}
-              ></ChangeCircleOutlined>
+              <ChangeWraper>
+                <ChangeCircleOutlined
+                  onClick={onPriceChange}
+                ></ChangeCircleOutlined>
+              </ChangeWraper>
             </SendBox>
           </SendPageContainer>
           <ButtonWraper>
@@ -69,6 +82,15 @@ const BoxWrapper = styled.div`
   height: 100%;
 `;
 
+const ChangeWraper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+`;
+
 const BoxContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -80,6 +102,7 @@ const ButtonWraper = styled.div`
   flex-direction: row;
   padding: 180px 30px 10px 30px;
 `;
+
 const CancelButton = styled.button`
   background-color: white;
   border: 1px solid royalblue;
