@@ -561,7 +561,7 @@ app.post('/send', function (req, res) {
     var Raw_Tx_Hex = '0x' + Serialized_Tx.toString('hex');
 
     web3.eth.sendSignedTransaction(Raw_Tx_Hex).on('receipt', (receipt) => {
-      console.log('receipt :', receipt);
+      res.json({ receipt: receipt });
     });
   });
 });

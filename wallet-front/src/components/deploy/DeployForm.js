@@ -38,6 +38,7 @@ const DeployForm = () => {
       // set token in local storage
       console.log(list);
       window.localStorage.setItem('receipt', JSON.stringify(list));
+      window.localStorage.setItem('asset', JSON.stringify(list));
 
       swal(
         '토큰이 발행되었습니다!',
@@ -66,6 +67,7 @@ const DeployForm = () => {
         );
         const { receipt } = data;
         receipt.tokenName = tokenName;
+        receipt.job = 'deploy';
         setResult(receipt);
         setList([...list, receipt]);
       } catch (err) {

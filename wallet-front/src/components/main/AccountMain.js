@@ -17,7 +17,7 @@ const AccountMain = () => {
         const address = '0x52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67';
         const response = await axios.post('http://localhost:3000/balance', {
           address: address,
-          contract_address: '0x55992A4E5883c1DA9dA8E7d89988e5419D1e293f',
+          contract_address: '0xce2C8fee7b64EE5443Ffdd9F8804356e9838DC68',
         });
         const { data } = response;
         console.log(data);
