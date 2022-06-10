@@ -26,6 +26,9 @@ const DeployForm = () => {
 
   useEffect(() => {
     if (result !== '') {
+      // set token in local storage
+      window.localStorage.setItem('receipt', JSON.stringify(result));
+
       swal(
         '토큰이 발행되었습니다!',
         '메인으로 이동하시겠습니까?',
