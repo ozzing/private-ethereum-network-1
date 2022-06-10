@@ -40,28 +40,30 @@ const AccountMain = () => {
         </div>
       </WalletOverView>
       <ButtonGroup>
-        <ButtonWrapper>
-          <Link to="/deploy">
+        <Link to="/deploy">
+          <ButtonWrapper>
             <Circle>
               <DownloadIcon sx={{ color: '#ffffff', fontSize: 20 }} />
             </Circle>
             <ButtonSpan>토큰 발행</ButtonSpan>
-          </Link>
-        </ButtonWrapper>
-        <ButtonWrapper>
-          <Link to="/send">
+          </ButtonWrapper>
+        </Link>
+        <Link to="/send">
+          <ButtonWrapper>
             <Circle>
               <ArrowForwardIcon sx={{ color: '#ffffff', fontSize: 20 }} />
             </Circle>
             <ButtonSpan>보내기</ButtonSpan>
-          </Link>
-        </ButtonWrapper>
-        <ButtonWrapper>
-          <Circle>
-            <SwapHorizIcon sx={{ color: '#ffffff', fontSize: 20 }} />
-          </Circle>
-          <ButtonSpan>스왑</ButtonSpan>
-        </ButtonWrapper>
+          </ButtonWrapper>
+        </Link>
+        <Link to="/swap">
+          <ButtonWrapper>
+            <Circle>
+              <SwapHorizIcon sx={{ color: '#ffffff', fontSize: 20 }} />
+            </Circle>
+            <ButtonSpan>스왑</ButtonSpan>
+          </ButtonWrapper>
+        </Link>
       </ButtonGroup>
     </MainWrapper>
   );
