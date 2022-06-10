@@ -12,6 +12,10 @@ import Divider from '@mui/material/Divider';
 const AccountList = () => {
   const [accountList, setAccountList] = useState([]);
 
+  const handleClick = (event, newValue) => {
+    window.location.href = '/send/account';
+  };
+
   useEffect(() => {
     setAccountList([
       {
@@ -41,7 +45,11 @@ const AccountList = () => {
             return (
               <div key={index}>
                 <ListItem disablePadding>
-                  <ListItemButton>
+                  <ListItemButton
+                    onClick={() => {
+                      handleClick();
+                    }}
+                  >
                     <Circle />
                     <ListItemText primary={name} secondary={key} />
                   </ListItemButton>
