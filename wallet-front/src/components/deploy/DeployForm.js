@@ -3,11 +3,16 @@ import Input from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import axios from 'axios';
+import { useEffect } from 'react';
+import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 const DeployForm = () => {
+  const navigate = useNavigate();
   const [tokenName, setTokenName] = useState('');
   const [tokenSymbol, setTokenSymbol] = useState('');
   const [tokenSupply, setTokenSupply] = useState('');
+  const [result, setResult] = useState('');
 
   const handleTokenName = (event) => {
     setTokenName(event.target.value);
@@ -19,6 +24,20 @@ const DeployForm = () => {
     setTokenSupply(event.target.value);
   };
 
+  useEffect(() => {
+    if (result !== '') {
+      swal(
+        '토큰이 발행되었습니다!',
+        '메인으로 이동하시겠습니까?',
+        'success'
+      ).then((value) => {
+        if (value === true) {
+          navigate('/');
+        }
+      });
+    }
+  }, [result, navigate]);
+
   const handleSubmit = () => {
     const payload = {
       tokenName: tokenName,
@@ -28,12 +47,12 @@ const DeployForm = () => {
     // submit this to server
     const Submit = async () => {
       try {
-        const response = await axios.post(
+        const { data } = await axios.post(
           'http://localhost:3000/deploy',
           payload
         );
-
-        console.log(response);
+        const { receipt } = data;
+        setResult(receipt);
       } catch (err) {
         console.log('Error >>', err);
       }
@@ -67,7 +86,6 @@ const DeployForm = () => {
         <h3>Token Supply</h3>
         <Input placeholder="token_supply" onChange={handleTokenSupply} />
       </div>
-
       <Button onClick={handleSubmit}>Submit</Button>
     </Box>
   );

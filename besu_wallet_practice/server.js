@@ -525,6 +525,7 @@ app.post('/deploy', function (req, res) {
 
     web3.eth.sendSignedTransaction(Raw_Tx_Hex).on('receipt', (receipt) => {
       console.log('receipt : ', receipt);
+      res.json({ receipt: receipt });
     });
   });
 });
