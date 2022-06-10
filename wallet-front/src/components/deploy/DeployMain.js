@@ -6,11 +6,7 @@ import TabContainer from '../main/TabContainer';
 const DeployMain = () => {
   return (
     <MainWrapper>
-      <AccountHeader>
-        <AccountMain>
-          <TabContainer />
-        </AccountMain>
-      </AccountHeader>
+      <AccountHeader />
     </MainWrapper>
   );
 };
