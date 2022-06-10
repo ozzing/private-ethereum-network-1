@@ -20,6 +20,10 @@ const SendPageMain = () => {
     setPrice(event.target.value);
   };
 
+  const onCancelClick = (event) => {
+    window.location.href = '/send';
+  };
+
   return (
     <Box sx={{ width: '100%' }}>
       <BoxWrapper>
@@ -55,7 +59,7 @@ const SendPageMain = () => {
             </SendBox>
           </SendPageContainer>
           <ButtonWraper>
-            <CancelButton>취소</CancelButton>
+            <CancelButton onClick={onCancelClick}>취소</CancelButton>
             <NextButton>다음</NextButton>
           </ButtonWraper>
         </BoxContainer>
@@ -127,7 +131,7 @@ const SendBox = styled.div`
   flex-direction: row;
   position: relative;
   justify-items: center;
-  width: 300px;
+  width: 320px;
   height: 70px;
   border: 1px solid lightgray;
   border-radius: 4px;
@@ -136,11 +140,11 @@ const SendBox = styled.div`
   margin-top: 10px;
 `;
 const SendPageContainer = styled.div`
-  height: 80px;
   display: flex;
   flex-direction: row;
-  margin-left: 20px;
-  margin-right: 20px;
+  height: 80px;
+  margin-left: 10px;
+  margin-right: 10px;
   justify-content: center;
   align-items: center;
   flex: 1;
