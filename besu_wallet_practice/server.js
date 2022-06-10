@@ -570,19 +570,13 @@ app.get('/balance', function (req, res) {
   res.sendFile(__dirname + '/balance.html');
 });
 app.post('/balance', function (req, res) {
-  var contract_address = '0x5C0592d879f619d1a1D432FCB47c669E96572239';
+  var contract_address = req.body.contract_address;
   var contract = new web3.eth.Contract(ABI, contract_address);
-
   contract.methods
     .balanceOf(req.body.address)
     .call()
     .then((data) => {
-      var decimal = Math.pow(10, 18);
-      var new_data = data / decimal;
-
-      console.log(new_data);
-
-      res.send('balance= ' + new_data);
+      res.send(data);
     });
 });
 

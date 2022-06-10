@@ -65,6 +65,7 @@ const DeployForm = () => {
           payload
         );
         const { receipt } = data;
+        receipt.tokenName = tokenName;
         setResult(receipt);
         setList([...list, receipt]);
       } catch (err) {
