@@ -4,10 +4,6 @@ import styled from 'styled-components';
 import logo from '../shared/logo.png';
 import { ChangeCircleOutlined } from '@mui/icons-material';
 
-const onPriceChange = (event, newValue) => {
-  window.location.href = '/send/';
-};
-
 const SendPageMain = () => {
   const [value, setValue] = React.useState();
   const onPriceChange = (event, newValue) => {};
