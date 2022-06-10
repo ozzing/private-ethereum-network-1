@@ -1,6 +1,22 @@
 import styled from 'styled-components';
 import COLORS from '../../constants/Colors';
 
+export const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  min-height: 82vh;
+  box-shadow: 0 0 7px 0 rgb(0 0 0 / 8%);
+  background-color: #ffffff;
+  align-items: center;
+
+  @media screen and (min-width: 1281px) {
+    width: 62vw;
+    min-height: 82vh;
+    box-shadow: ;
+  }
+`;
+
 export const HorizontalLine = styled.div`
   border-top: 1px solid ${COLORS.gray1};
   height: 0.5px;
