@@ -5,12 +5,18 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import styled from 'styled-components';
 import COLORS from '../../constants/Colors';
+import { useNavigate } from 'react-router-dom';
 
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
 const AccountList = () => {
+  const navigate = useNavigate();
   const [accountList, setAccountList] = useState([]);
+
+  const handleClick = (name, key) => {
+    navigate('/send/account', { state: { name: name, key: key } });
+  };
 
   useEffect(() => {
     setAccountList([
@@ -41,7 +47,11 @@ const AccountList = () => {
             return (
               <div key={index}>
                 <ListItem disablePadding>
-                  <ListItemButton>
+                  <ListItemButton
+                    onClick={() => {
+                      handleClick(name, key);
+                    }}
+                  >
                     <Circle />
                     <ListItemText primary={name} secondary={key} />
                   </ListItemButton>

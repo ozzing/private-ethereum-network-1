@@ -6,7 +6,7 @@ const Send = () => {
   return (
     <SendBase>
       <SendContainer>
-        <h2>Send</h2>y
+        <h2>Send</h2>
         <SendMain />
       </SendContainer>
     </SendBase>
