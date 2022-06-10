@@ -5,8 +5,10 @@ import logo from '../shared/logo.png';
 import { ChangeCircleOutlined } from '@mui/icons-material';
 import Input from '@mui/material/Input';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SendPageMain = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState('eth', 'USD');
   const [money, setMoney] = useState('USD', 'eth');
   const onPriceChange = (event) => {
@@ -43,12 +45,14 @@ const SendPageMain = () => {
   };
 
   const onCancelClick = (event) => {
-    window.location.href = '/send';
+    navigate('/send');
   };
 
   const onMaxClick = (event) => {
     price === balance ? setPrice(0) : setPrice(balance);
   };
+
+  const onSendClick = (event) => {};
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -94,7 +98,7 @@ const SendPageMain = () => {
           </SendPageContainer>
           <ButtonWraper>
             <CancelButton onClick={onCancelClick}>취소</CancelButton>
-            <NextButton>다음</NextButton>
+            <SendButton onClick={onSendClick}>전송</SendButton>
           </ButtonWraper>
         </BoxContainer>
       </BoxWrapper>
@@ -172,7 +176,7 @@ const CancelButton = styled.button`
   color: royalblue;
 `;
 
-const NextButton = styled.button`
+const SendButton = styled.button`
   background-color: royalblue;
   border: 1px solid royalblue;
   border-radius: 40px;
@@ -215,18 +219,6 @@ const SendPageContainer = styled.div`
   align-items: center;
   flex: 1;
   background-color: white;
-`;
-const SendWrapper = styled.div`
-  grid-column: 2 / span 1;
-  place-self: center stretch;
-  height: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  flex: 1;
-  background-color: white;
-  border: 1px solid gray;
 `;
 
 const ButtonWrapper = styled.div`

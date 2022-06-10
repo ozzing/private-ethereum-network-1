@@ -2,13 +2,15 @@ import styled from 'styled-components';
 import { Checkbox } from '@mui/material';
 import { HorizontalLine } from '../shared/Components';
 import { useLocation } from 'react-router';
-
-const handleClick = (event, newValue) => {
-  window.location.href = '/send';
-};
+import { useNavigate } from 'react-router-dom';
 
 const AccountHeader = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
+
+  const handleClick = (event, newValue) => {
+    navigate('/send');
+  };
   return (
     <>
       <HeaderWrapper>
