@@ -4,6 +4,7 @@ import App from './App';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Deploy from './pages/deploy/Deploy';
 import Send from './pages/send/Send';
+import SendPage from './components/send/SendPage';
 import MainHeader from './components/header/MainHeader';
 import GlobalStyle from './styles/GlobalStyle';
 
@@ -16,6 +17,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="deploy" element={<Deploy />} />
         <Route path="send" element={<Send />} />
+        <Route path="send/account" element={<SendPage />} />
       </Routes>
     </BrowserRouter>
     <GlobalStyle />
