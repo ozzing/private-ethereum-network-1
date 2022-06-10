@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Input from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import axios from 'axios';
 
 const DeployForm = () => {
   const [tokenName, setTokenName] = useState('');
@@ -25,7 +26,19 @@ const DeployForm = () => {
       tokenSupply: tokenSupply,
     };
     // submit this to server
-    console.log(payload);
+    const Submit = async () => {
+      try {
+        const response = await axios.post(
+          'http://localhost:3000/deploy',
+          payload
+        );
+
+        console.log(response);
+      } catch (err) {
+        console.log('Error >>', err);
+      }
+    };
+    Submit();
   };
 
   return (
