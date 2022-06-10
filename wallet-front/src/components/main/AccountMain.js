@@ -6,12 +6,23 @@ import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import { Circle } from '../shared/Components';
 import COLORS from '../../constants/Colors';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const AccountMain = () => {
   const [balace, setBalance] = useState();
 
   useEffect(() => {
     setBalance(4000);
+    const InitCall = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/');
+        const { data } = response;
+        console.log(data);
+      } catch (err) {
+        console.log('Error >>', err);
+      }
+    };
+    InitCall();
   }, []);
 
   return (
