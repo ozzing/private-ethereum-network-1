@@ -17,10 +17,19 @@ const ReceiptList = () => {
       const receipt = JSON.parse(loadData);
       let tempList = [];
       receipt.forEach((element) => {
+        const job = element.job;
+        let contractAddress;
+        let amount;
         // console.log(element);
-        const job = 'deploy';
-        const contractAddress = element.contractAddress;
-        const amount = parseInt(element.logs[0].data, 16);
+        if (element.logs[0]) {
+          contractAddress = element.logs[0].address;
+          amount = parseInt(element.logs[0].data, 16);
+        } else {
+          console.log(element);
+          contractAddress = element.address;
+          amount = 234;
+        }
+
         tempList = [
           ...tempList,
           { job: job, contractAddress: contractAddress, amount: amount },

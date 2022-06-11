@@ -8,6 +8,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
+import axios from 'axios';
+
 const AssetList = () => {
   const [tokenList, setTokenList] = useState([]);
   // commit test
@@ -18,19 +20,41 @@ const AssetList = () => {
       const receipt = JSON.parse(loadData);
       let tempList = [];
       receipt.forEach((element) => {
-        const tokenName = element.tokenName;
-        const contractAddress = element.contractAddress;
-        const amount = parseInt(element.logs[0].data, 16);
-        tempList = [
-          ...tempList,
-          {
-            tokenName: tokenName,
-            contractAddress: contractAddress,
-            amount: amount,
-          },
-        ];
+        if (element.job === 'deploy') {
+          const tokenName = element.tokenName;
+          const contract_address = element.contractAddress;
+          // contractAddress 로 다시 balance 검색
+          // submit this to server
+
+          const balanceCheck = async () => {
+            try {
+              const address = '0x52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67';
+              const response = await axios.post(
+                'http://localhost:3000/balance',
+                {
+                  address: address,
+                  contract_address: contract_address,
+                }
+              );
+              const { data } = response;
+              console.log(data);
+              tempList = [
+                ...tempList,
+                {
+                  tokenName: tokenName,
+                  contractAddress: contract_address,
+                  amount: data,
+                },
+              ];
+
+              setTokenList(tempList);
+            } catch (err) {
+              console.log('Error >>', err);
+            }
+          };
+          balanceCheck();
+        }
       });
-      setTokenList(tempList);
     }
   }, []);
 

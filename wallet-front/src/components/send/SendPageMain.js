@@ -6,30 +6,34 @@ import { ChangeCircleOutlined } from '@mui/icons-material';
 import Input from '@mui/material/Input';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import swal from 'sweetalert';
 
 const SendPageMain = () => {
   const navigate = useNavigate();
-  const [value, setValue] = useState('eth', 'USD');
-  const [money, setMoney] = useState('USD', 'eth');
-  const onPriceChange = (event) => {
-    value === 'eth' ? setValue('USD') : setValue('eth');
-    money === 'USD' ? setMoney('eth') : setMoney('USD');
-  };
 
-  const [balance, setBalance] = useState();
+  const [value, setValue] = useState('ETH', 'USD');
+  const [money, setMoney] = useState('USD', 'ETH');
+  const onPriceChange = (event) => {
+    value === 'ETH' ? setValue('USD') : setValue('ETH');
+    money === 'USD' ? setMoney('ETH') : setMoney('USD');
+  };
+  const [balance, setBalance] = useState(0);
+  const [tokenName, setTokenName] = useState('');
+  const { state } = useLocation();
+
+  const [list, setList] = useState([]);
+  const [result, setResult] = useState('');
 
   useEffect(() => {
-    setBalance(4000);
-    const InitCall = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/');
-        const { data } = response;
-        console.log(data);
-      } catch (err) {
-        console.log('Error >>', err);
-      }
-    };
-    InitCall();
+    const loadData = window.localStorage.getItem('receipt');
+    if (loadData !== null) {
+      const receipt = JSON.parse(loadData);
+
+      setList(receipt);
+      setTokenName(receipt[0].tokenName);
+      setBalance(parseInt(receipt[0].logs[0].data, 16));
+    }
   }, []);
 
   const [price, setPrice] = useState(0);
@@ -52,7 +56,53 @@ const SendPageMain = () => {
     price === balance ? setPrice(0) : setPrice(balance);
   };
 
-  const onSendClick = (event) => {};
+  useEffect(() => {
+    if (result !== '') {
+      // set token in local storage
+      window.localStorage.setItem('receipt', JSON.stringify(list));
+
+      swal(
+        '전송이 완료되었습니다',
+        '메인으로 이동하시겠습니까?',
+        'success'
+      ).then((value) => {
+        if (value === true) {
+          navigate('/');
+        }
+      });
+    }
+  }, [result, list, navigate]);
+
+  const onSendClick = (event) => {
+    const contract_address = state.key;
+    const address = '0x52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67';
+    const value = price;
+    const payload = {
+      contract_address: contract_address,
+      address: address,
+      value: value,
+    };
+
+    // submit this to server
+    const Submit = async () => {
+      try {
+        const { data } = await axios.post(
+          'http://localhost:3000/send',
+          payload
+        );
+        const { receipt } = data;
+        receipt.tokenName = tokenName;
+        receipt.job = 'send';
+        receipt.address = contract_address;
+        console.log(receipt);
+        setResult(receipt);
+        setList([...list, receipt]);
+      } catch (err) {
+        console.log('Error >>', err);
+      }
+    };
+    Submit();
+  };
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -65,9 +115,9 @@ const SendPageMain = () => {
             <SendBox>
               <LogoCircle src={logo} />
               <BalanceWrapper>
-                <b>eth</b>
+                <b>{tokenName}</b>
                 <br></br>
-                잔액: {balance} ETH
+                잔액: {balance} {tokenName}
               </BalanceWrapper>
             </SendBox>
           </SendPageContainer>

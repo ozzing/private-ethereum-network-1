@@ -23,17 +23,17 @@ const AccountList = () => {
       {
         img: '1.jpg',
         name: 'Account 1',
-        key: '0x52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67',
+        key: '0x4510506D37C30f96AAdceaed159dEd8d544Df8Ff',
       },
       {
         img: '2.jpg',
-        name: 'Account 2',
-        key: '0x52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67',
+        name: 'Account 3',
+        key: '0x3BfE330e4A94F787E23D477164816b3174232Fe1',
       },
       {
         img: '3.jpg',
-        name: 'Account 3',
-        key: '0x52fCBe983F64dE326F2C0b5DFd26E0f3D1633c67',
+        name: 'Account 4',
+        key: '0xF4CD7568795A8dc95534425A6495c495d2E78cEc',
       },
     ]);
   }, []);
