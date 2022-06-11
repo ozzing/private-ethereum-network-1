@@ -535,7 +535,8 @@ app.get('/send', function (req, res) {
 });
 
 app.post('/send', function (req, res) {
-  var contract_address = '0x5C0592d879f619d1a1D432FCB47c669E96572239';
+  var contract_address = req.body.contract_address;
+  console.log(contract_address);
   var contract = new web3.eth.Contract(ABI, contract_address);
   var set_contract = contract.methods.transfer(
     req.body.address,

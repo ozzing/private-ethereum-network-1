@@ -93,6 +93,7 @@ const SendPageMain = () => {
         const { receipt } = data;
         receipt.tokenName = tokenName;
         receipt.job = 'send';
+        receipt.address = contract_address;
         console.log(receipt);
         setResult(receipt);
         setList([...list, receipt]);

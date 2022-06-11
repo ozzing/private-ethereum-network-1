@@ -18,8 +18,18 @@ const ReceiptList = () => {
       let tempList = [];
       receipt.forEach((element) => {
         const job = element.job;
-        const contractAddress = element.logs[0].address;
-        const amount = parseInt(element.logs[0].data, 16);
+        let contractAddress;
+        let amount;
+        // console.log(element);
+        if (element.logs[0]) {
+          contractAddress = element.logs[0].address;
+          amount = parseInt(element.logs[0].data, 16);
+        } else {
+          console.log(element);
+          contractAddress = element.address;
+          amount = 234;
+        }
+
         tempList = [
           ...tempList,
           { job: job, contractAddress: contractAddress, amount: amount },
